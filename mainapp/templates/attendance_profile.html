@@ -1,0 +1,27 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/attendance_profile.css' %}">
+    <title>Profile for {{attendance}}</title>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h3 id="attendanceName">Attendance for: {{attendance}}</h3>
+        </div>
+    </header>
+    <main>
+        <h4>List of current attendees:</h4>
+        <ul>
+            {%for person in attendees %}
+            <li>
+                <img src="data:image/*;base64,{{person.image}}">
+                <span>{{person.name}}</span>
+            </li>
+            {%endfor%}
+        </ul>
+    </main>
+</body>

@@ -1,0 +1,387 @@
+Help on class ManyToManyField in module django.db.models.fields.related:
+
+class MMaannyyTTooMMaannyyFFiieelldd(RelatedField)
+ |  ManyToManyField(to, related_name=None, related_query_name=None, limit_choices_to=None, symmetrical=None, through=None, through_fields=None, db_constraint=True, db_table=None, swappable=True, **kwargs)
+ |  
+ |  Provide a many-to-many relation by using an intermediary model that
+ |  holds two ForeignKey fields pointed at the two sides of the relation.
+ |  
+ |  Unless a ``through`` model was provided, ManyToManyField will use the
+ |  create_many_to_many_intermediary_model factory to automatically generate
+ |  the intermediary model.
+ |  
+ |  Method resolution order:
+ |      ManyToManyField
+ |      RelatedField
+ |      django.db.models.fields.mixins.FieldCacheMixin
+ |      django.db.models.fields.Field
+ |      django.db.models.query_utils.RegisterLookupMixin
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  ____iinniitt____(self, to, related_name=None, related_query_name=None, limit_choices_to=None, symmetrical=None, through=None, through_fields=None, db_constraint=True, db_table=None, swappable=True, **kwargs)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  cchheecckk(self, **kwargs)
+ |  
+ |  ccoonnttrriibbuuttee__ttoo__ccllaassss(self, cls, name, **kwargs)
+ |      Register the field with the model class it belongs to.
+ |      
+ |      If private_only is True, create a separate instance of this field
+ |      for every subclass of cls, even if cls is not an abstract model.
+ |  
+ |  ccoonnttrriibbuuttee__ttoo__rreellaatteedd__ccllaassss(self, cls, related)
+ |  
+ |  ddbb__cchheecckk(self, connection)
+ |      Return the database column check constraint for this field, for the
+ |      provided connection. Works the same way as db_type() for the case that
+ |      get_internal_type() does not map to a preexisting model field.
+ |  
+ |  ddbb__ppaarraammeetteerrss(self, connection)
+ |      Extension of db_type(), providing a range of different return values
+ |      (type, checks). This will look at db_type(), allowing custom model
+ |      fields to override it.
+ |  
+ |  ddbb__ttyyppee(self, connection)
+ |      Return the database column data type for this field, for the provided
+ |      connection.
+ |  
+ |  ddeeccoonnssttrruucctt(self)
+ |      Return enough information to recreate the field as a 4-tuple:
+ |      
+ |       * The name of the field on the model, if contribute_to_class() has
+ |         been run.
+ |       * The import path of the field, including the class, e.g.
+ |         django.db.models.IntegerField. This should be the most portable
+ |         version, so less specific may be better.
+ |       * A list of positional arguments.
+ |       * A dict of keyword arguments.
+ |      
+ |      Note that the positional or keyword arguments must contain values of
+ |      the following types (including inner values of collection types):
+ |      
+ |       * None, bool, str, int, float, complex, set, frozenset, list, tuple,
+ |         dict
+ |       * UUID
+ |       * datetime.datetime (naive), datetime.date
+ |       * top-level classes, top-level functions - will be referenced by their
+ |         full import path
+ |       * Storage instances - these have their own deconstruct() method
+ |      
+ |      This is because the values here must be serialized into a text format
+ |      (possibly new Python code, possibly JSON) and these are the only types
+ |      with encoding handlers defined.
+ |      
+ |      There's no need to return the exact way the field was instantiated this
+ |      time, just ensure that the resulting field is the same - prefer keyword
+ |      arguments over positional ones, and omit parameters with their default
+ |      values.
+ |  
+ |  ffoorrmmffiieelldd(self, *, using=None, **kwargs)
+ |      Pass ``limit_choices_to`` to the field being constructed.
+ |      
+ |      Only passes it if there is a type that supports related fields.
+ |      This is a similar strategy used to pass the ``queryset`` to the field
+ |      being constructed.
+ |  
+ |  ggeett__ppaatthh__iinnffoo(self, filtered_relation=None)
+ |  
+ |  ggeett__rreevveerrssee__ppaatthh__iinnffoo(self, filtered_relation=None)
+ |  
+ |  ppaatthh__iinnffooss = <django.utils.functional.cached_property object>
+ |  rreevveerrssee__ppaatthh__iinnffooss = <django.utils.functional.cached_property object>
+ |  ssaavvee__ffoorrmm__ddaattaa(self, instance, data)
+ |  
+ |  sseett__aattttrriibbuutteess__ffrroomm__rreell(self)
+ |  
+ |  vvaalluuee__ffrroomm__oobbjjeecctt(self, obj)
+ |      Return the value of this field in the given model instance.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  ddeessccrriippttiioonn = 'Many-to-many relationship'
+ |  
+ |  mmaannyy__ttoo__mmaannyy = True
+ |  
+ |  mmaannyy__ttoo__oonnee = False
+ |  
+ |  oonnee__ttoo__mmaannyy = False
+ |  
+ |  oonnee__ttoo__oonnee = False
+ |  
+ |  rreell__ccllaassss = <class 'django.db.models.fields.reverse_related.ManyToMany...
+ |      Used by ManyToManyField to store information about the relation.
+ |      
+ |      ``_meta.get_fields()`` returns this class to provide access to the field
+ |      flags for the reverse relation.
+ |  
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from RelatedField:
+ |  
+ |  ddoo__rreellaatteedd__ccllaassss(self, other, cls)
+ |  
+ |  ggeett__ccaacchhee__nnaammee(self)
+ |  
+ |  ggeett__ffoorrwwaarrdd__rreellaatteedd__ffiilltteerr(self, obj)
+ |      Return the keyword arguments that when supplied to
+ |      self.model.object.filter(), would select all instances related through
+ |      this field to the remote obj. This is used to build the querysets
+ |      returned by related descriptors. obj is an instance of
+ |      self.related_field.model.
+ |  
+ |  ggeett__lliimmiitt__cchhooiicceess__ttoo(self)
+ |      Return ``limit_choices_to`` for this model field.
+ |      
+ |      If it is a callable, it will be invoked and the result will be
+ |      returned.
+ |  
+ |  ggeett__rreevveerrssee__rreellaatteedd__ffiilltteerr(self, obj)
+ |      Complement to get_forward_related_filter(). Return the keyword
+ |      arguments that when passed to self.related_field.model.object.filter()
+ |      select all instances of self.related_field.model related through
+ |      this field to obj. obj is an instance of self.model.
+ |  
+ |  rreellaatteedd__mmooddeell = <django.utils.functional.cached_property object>
+ |  rreellaatteedd__qquueerryy__nnaammee(self)
+ |      Define the name that can be used to identify this related object in a
+ |      table-spanning query.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties inherited from RelatedField:
+ |  
+ |  sswwaappppaabbllee__sseettttiinngg
+ |      Get the setting that this is powered from for swapping, or None
+ |      if it's not swapped in / marked with swappable=False.
+ |  
+ |  ttaarrggeett__ffiieelldd
+ |      When filtering against this relation, return the field on the remote
+ |      model against which the filtering should happen.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from django.db.models.fields.mixins.FieldCacheMixin:
+ |  
+ |  ddeelleettee__ccaacchheedd__vvaalluuee(self, instance)
+ |  
+ |  ggeett__ccaacchheedd__vvaalluuee(self, instance, default=<object object at 0x7fd7c2b89e00>)
+ |  
+ |  iiss__ccaacchheedd(self, instance)
+ |  
+ |  sseett__ccaacchheedd__vvaalluuee(self, instance, value)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from django.db.models.fields.mixins.FieldCacheMixin:
+ |  
+ |  ____ddiicctt____
+ |      dictionary for instance variables (if defined)
+ |  
+ |  ____wweeaakkrreeff____
+ |      list of weak references to the object (if defined)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from django.db.models.fields.Field:
+ |  
+ |  ____ccooppyy____(self)
+ |  
+ |  ____ddeeeeppccooppyy____(self, memodict)
+ |  
+ |  ____eeqq____(self, other)
+ |      Return self==value.
+ |  
+ |  ____ggee____(self, other, NotImplemented=NotImplemented)
+ |      Return a >= b.  Computed by @total_ordering from (not a < b).
+ |  
+ |  ____ggtt____(self, other, NotImplemented=NotImplemented)
+ |      Return a > b.  Computed by @total_ordering from (not a < b) and (a != b).
+ |  
+ |  ____hhaasshh____(self)
+ |      Return hash(self).
+ |  
+ |  ____llee____(self, other, NotImplemented=NotImplemented)
+ |      Return a <= b.  Computed by @total_ordering from (a < b) or (a == b).
+ |  
+ |  ____lltt____(self, other)
+ |      Return self<value.
+ |  
+ |  ____rreedduuccee____(self)
+ |      Pickling should return the model._meta.fields instance of the field,
+ |      not a new copy of that field. So, use the app registry to load the
+ |      model and then the field back.
+ |  
+ |  ____rreepprr____(self)
+ |      Display the module, class, and name of the field.
+ |  
+ |  ____ssttrr____(self)
+ |      Return "app_label.model_label.field_name" for fields attached to
+ |      models.
+ |  
+ |  ccaacchheedd__ccooll = <django.utils.functional.cached_property object>
+ |  ccaasstt__ddbb__ttyyppee(self, connection)
+ |      Return the data type to use in the Cast() function.
+ |  
+ |  cclleeaann(self, value, model_instance)
+ |      Convert the value's type and run validation. Validation errors
+ |      from to_python() and validate() are propagated. Return the correct
+ |      value if no error is raised.
+ |  
+ |  cclloonnee(self)
+ |      Uses deconstruct() to clone a new copy of this Field.
+ |      Will not preserve any class attachments/attribute names.
+ |  
+ |  ddbb__ttyyppee__ppaarraammeetteerrss(self, connection)
+ |  
+ |  ddbb__ttyyppee__ssuuffffiixx(self, connection)
+ |  
+ |  eerrrroorr__mmeessssaaggeess = <django.utils.functional.cached_property object>
+ |  ggeett__aattttnnaammee(self)
+ |  
+ |  ggeett__aattttnnaammee__ccoolluummnn(self)
+ |  
+ |  ggeett__cchhooiicceess(self, include_blank=True, blank_choice=[('', '---------')], limit_choices_to=None, ordering=())
+ |      Return choices with a default blank choices included, for use
+ |      as <select> choices for this field.
+ |  
+ |  ggeett__ccooll(self, alias, output_field=None)
+ |  
+ |  ggeett__ddbb__ccoonnvveerrtteerrss(self, connection)
+ |  
+ |  ggeett__ddbb__pprreepp__ssaavvee(self, value, connection)
+ |      Return field's value prepared for saving into a database.
+ |  
+ |  ggeett__ddbb__pprreepp__vvaalluuee(self, value, connection, prepared=False)
+ |      Return field's value prepared for interacting with the database backend.
+ |      
+ |      Used by the default implementations of get_db_prep_save().
+ |  
+ |  ggeett__ddeeffaauulltt(self)
+ |      Return the default value for this field.
+ |  
+ |  ggeett__ffiilltteerr__kkwwaarrggss__ffoorr__oobbjjeecctt(self, obj)
+ |      Return a dict that when passed as kwargs to self.model.filter(), would
+ |      yield all instances having the same value for this field as obj has.
+ |  
+ |  ggeett__iinntteerrnnaall__ttyyppee(self)
+ |  
+ |  ggeett__ppkk__vvaalluuee__oonn__ssaavvee(self, instance)
+ |      Hook to generate new PK values on save. This method is called when
+ |      saving instances with no primary key value set. If this method returns
+ |      something else than None, then the returned value is used when saving
+ |      the new instance.
+ |  
+ |  ggeett__pprreepp__vvaalluuee(self, value)
+ |      Perform preliminary non-db specific value checks and conversions.
+ |  
+ |  hhaass__ddeeffaauulltt(self)
+ |      Return a boolean of whether this field has a default value.
+ |  
+ |  pprree__ssaavvee(self, model_instance, add)
+ |      Return field's value just before saving.
+ |  
+ |  rreell__ddbb__ttyyppee(self, connection)
+ |      Return the data type that a related field pointing to this field should
+ |      use. For example, this method is called by ForeignKey and OneToOneField
+ |      to determine its data type.
+ |  
+ |  rruunn__vvaalliiddaattoorrss(self, value)
+ |  
+ |  sseelleecctt__ffoorrmmaatt(self, compiler, sql, params)
+ |      Custom format for select clauses. For example, GIS columns need to be
+ |      selected as AsText(table.col) on MySQL as the table.col data can't be
+ |      used by Django.
+ |  
+ |  sseett__aattttrriibbuutteess__ffrroomm__nnaammee(self, name)
+ |  
+ |  ttoo__ppyytthhoonn(self, value)
+ |      Convert the input value into the expected Python data type, raising
+ |      django.core.exceptions.ValidationError if the data can't be converted.
+ |      Return the converted value. Subclasses should override this.
+ |  
+ |  vvaalliiddaattee(self, value, model_instance)
+ |      Validate value and raise ValidationError if necessary. Subclasses
+ |      should override this to provide validation logic.
+ |  
+ |  vvaalliiddaattoorrss = <django.utils.functional.cached_property object>
+ |      Some validators can't be created at field initialization time.
+ |      This method provides a way to delay their creation until required.
+ |  
+ |  vvaalluuee__ttoo__ssttrriinngg(self, obj)
+ |      Return a string value of this field from the passed obj.
+ |      This is used by the serialization framework.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties inherited from django.db.models.fields.Field:
+ |  
+ |  ddbb__rreettuurrnniinngg
+ |      Private API intended only to be used by Django itself. Currently only
+ |      the PostgreSQL backend supports returning multiple fields on a model.
+ |  
+ |  ddbb__ttaabblleessppaaccee
+ |  
+ |  ffllaattcchhooiicceess
+ |      Flattened version of choices tuple.
+ |  
+ |  uunniiqquuee
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from django.db.models.fields.Field:
+ |  
+ |  aauuttoo__ccrreeaattiioonn__ccoouunntteerr = -13
+ |  
+ |  ccllaassss__llooookkuuppss = {'contains': <class 'django.db.models.lookups.Contains...
+ |  
+ |  ccrreeaattiioonn__ccoouunntteerr = 71
+ |  
+ |  ddeeffaauulltt__eerrrroorr__mmeessssaaggeess = {'blank': 'This field cannot be blank.', 'inv...
+ |  
+ |  ddeeffaauulltt__vvaalliiddaattoorrss = []
+ |  
+ |  ddeessccrriippttoorr__ccllaassss = <class 'django.db.models.query_utils.DeferredAttrib...
+ |      A wrapper for a deferred-loading field. When the value is read from this
+ |      object the first time, the query is executed.
+ |  
+ |  
+ |  eemmppttyy__ssttrriinnggss__aalllloowweedd = True
+ |  
+ |  eemmppttyy__vvaalluueess = [None, '', [], (), {}]
+ |  
+ |  hhiiddddeenn = False
+ |  
+ |  nnoonn__ddbb__aattttrrss = ('blank', 'choices', 'db_column', 'editable', 'error_me...
+ |  
+ |  ssyysstteemm__cchheecckk__ddeepprreeccaatteedd__ddeettaaiillss = None
+ |  
+ |  ssyysstteemm__cchheecckk__rreemmoovveedd__ddeettaaiillss = None
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from django.db.models.query_utils.RegisterLookupMixin:
+ |  
+ |  ggeett__iinnssttaannccee__llooookkuuppss(self)
+ |  
+ |  ggeett__llooookkuupp(self, lookup_name)
+ |  
+ |  ggeett__ttrraannssffoorrmm(self, lookup_name)
+ |  
+ |  rreeggiisstteerr__iinnssttaannccee__llooookkuupp(self, lookup, lookup_name=None)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from django.db.models.query_utils.RegisterLookupMixin:
+ |  
+ |  ggeett__ccllaassss__llooookkuuppss() from builtins.type
+ |  
+ |  rreeggiisstteerr__ccllaassss__llooookkuupp(lookup, lookup_name=None) from builtins.type
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods inherited from django.db.models.query_utils.RegisterLookupMixin:
+ |  
+ |  mmeerrggee__ddiiccttss(dicts)
+ |      Merge dicts in reverse to preference the order of the original list. e.g.,
+ |      merge_dicts([a, b]) will preference the keys in 'a' over those in 'b'.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from django.db.models.query_utils.RegisterLookupMixin:
+ |  
+ |  ggeett__llooookkuuppss = functools.partial(<functools._lru_cache_wrapper ...jango...
+ |  
+ |  rreeggiisstteerr__llooookkuupp = functools.partial(<function RegisterLookupMixin....j...

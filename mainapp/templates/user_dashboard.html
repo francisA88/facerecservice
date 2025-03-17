@@ -1,0 +1,91 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/user_dashboard.css' %}">
+    <title>Face Recognition Attendance System</title>
+</head>
+<body>
+    <header>
+    <div class="header-content">
+        <h4>Face Recognition Attendance System</h4>
+        <div class="user-actions">
+        <span class="username">Hello, {{username.title}}</span>
+        <a href="/logout" class="logout-button">Log Out</a>
+        </div>
+    </div>
+    </header>
+    <main>
+        <div class="create-attendance-div">
+            <span> Need a new attendance, {{username.title}}?</span>
+            <button id="createNew" class="button">+ New</button>
+        </div>
+        <div class="form-overlay" id="formOverlay2">
+            <div class="form-container">
+                <form id="attendance-creation" method="POST" action="/create-attendance/">
+                    {% csrf_token %}
+                    <input placeholder="Enter attendance name" name="attendance-name" required>
+                    <input type="submit" class="button" value="Create">
+                    <button class="close-form">Close</button>
+                </form>
+            </div>
+        </div>
+        <!-- list of all attendances -->
+        <div class="attendance-container">
+            <h3>Attendances Owned</h3>
+            <ol class="attendance-list">
+                {% for att in attendance %}
+                <li>
+                    <a href="/attendance-profile/{{att.att_id}}/" class="attendance-profile-link">
+                        <span>Name: {{ att.attendance_name }}</span>
+                        <!-- <span>{{att.url_shortened}}...</span> -->
+                        <!-- <span>{{att.status}}</span> -->
+                        <span class="hidden url">{{att.url}}</span>
+                    </a>
+                    <button class="copy button" data-url="{{att.url}}">Copy URL</button>
+                    <!-- <img src="data:image/png;{{att.image}}" alt=""> -->
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="registered-people-container">
+            <h3 class="authorized-title">Authorized Persons</h3>
+            <ul class="person-list">
+                {% for person in authpeople %}
+                <li>
+                    <img src="data:image/jpeg;base64,{{person.image}}" alt="Attendee's image" class="person-image">
+                    <span class="person-name">{{person.name.title}}</span>
+                </li>
+                {% endfor %}
+                <!-- Additional <li> items go here -->
+            </ul>
+        </div>
+        
+        <!-- { if imgs_exist %} -->
+        
+        <button class="add-button">+</button>
+        <!-- { else %} -->
+        <div class="main-content">
+        <button class="add-button2 add-button">Add Expected attendees</button>
+        <!-- Form for adding new person -->
+        <div class="form-overlay" id="formOverlay">
+            <div class="form-container">
+                <h3>Add New Person</h3>
+                <form id="addPersonForm" action="/upload/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="imageUpload">Upload image showing the face clearly:</label>
+                    <input type="file" name="person-image" id="imageUpload" accept="image/jpeg" required>
+                    <label for="personName">Name:</label>
+                    <input type="text" id="personName" name="name" required>
+                    <button type="submit">Add Person</button>
+                    <button type="button" id="closeForm">Close</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="{%static 'js/user_dashboard.js' %}"></script>
+</body>
+</html>
+    

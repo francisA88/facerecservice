@@ -1,0 +1,37 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/attendance.css' %}">
+    <title>Attendance for {{attendance_name}}</title>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h3 id="attendanceName">Attendance for: {{attendance_name}}</h3>
+        </div>
+    </header>
+    <main>
+        <span style="display: none;" id="idholder">{{att_id}}</span>
+        <!-- Trigger button -->
+        <button id="openModal">Take Attendance</button>
+    
+        <div id="csrf">{%csrf_token%}</div>
+        <!-- Popup Modal -->
+        <div id="cameraModal" class="modal">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <h2>Ensure your face is well positioned and well-lit inside the frame</h2>
+                <video id="video" autoplay></video>
+                <canvas id="canvas" style="display: none;"></canvas>
+                <p id="resultText"></p>
+                <button id="takeAttendance">Take Attendance</button>
+            </div>
+        </div>
+    </main>
+
+<script src="{%static 'js/attendance.js' %}"></script>
+</body>
+</html>

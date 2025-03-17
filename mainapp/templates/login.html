@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%load static%}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <meta name="theme-color" content="#ffff00"> -->
+        <title>Face Recognitio - Register</title>
+        <link rel="stylesheet" href="{%static 'bulma/bulma.min.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+        
+        <link rel="stylesheet" href="{%static 'css/login.css' %}">
+    </head>
+    <body>
+        <header>
+            <h4 class="xl">Login</h4>
+        </header>
+        <main>
+            <div id="formdiv">
+                <form method="post" action="/login/">
+                    {%csrf_token%}
+                    <input type="email" class="input" placeholder="Email" name="email" required>
+                    <input type="password" class="input" placeholder="Password" name="password" required>
+                    <input class="button is-primary submit" type="submit" value="Login">
+                </form>
+                <br>
+                <p>Don't have an account yet? <a href='/signup/'>Sign Up</a></p>
+            </div>
+        </main>
+        <script type="text/javascript">
+        </script>
+    </body>
+</html>

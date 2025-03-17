@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture Image and Convert to Base64</title>
+</head>
+<body>
+    <h1>Capture Image and Convert to Base64</h1>
+    
+    <!-- Video element to show the camera feed -->
+    <video id="video" width="640" height="480" autoplay></video>
+    
+    <!-- Canvas element to draw the captured image -->
+    <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+    
+    <!-- Button to capture the image -->
+    <button onclick="captureImage()">Capture Image</button>
+    
+    <!-- Image preview and base64 output -->
+    <h3>Captured Image:</h3>
+    <img id="capturedImage" alt="Captured image will appear here">
+    <h3>Base64 String:</h3>
+    <textarea id="base64Output" rows="10" cols="80" readonly></textarea>
+
+    <script>
+        // Access the camera and stream the video
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const videoElement = document.getElementById('video');
+                videoElement.srcObject = stream;
+            } catch (error) {
+                console.error('Error accessing the camera:', error);
+            }
+        }
+
+        // Call startCamera function when the page loads
+        window.onload = startCamera;
+
+        // Capture the image from the video stream and convert it to base64
+        function captureImage() {
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const context = canvas.getContext('2d');
+            
+            // Draw the current video frame to the canvas
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Get the image as a data URL (base64)
+            const base64Image = canvas.toDataURL('image/png');
+            
+            // Display the captured image and base64 string
+            document.getElementById('capturedImage').src = base64Image;
+            document.getElementById('base64Output').value = base64Image;
+        }
+    </script>
+</body>
+</html>
