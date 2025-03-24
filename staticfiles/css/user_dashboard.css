@@ -1,0 +1,424 @@
+/* General styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #a5a6b4; /* light grey background */
+    color: #1a1a3e;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    box-sizing: border-box;
+    box-sizing: content-box;
+}
+
+/* Header styles */
+header {
+    background-color: #1a1a3e;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #ffffff;
+    color: white;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Space between username and button */
+}
+
+.username {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.logout-button {
+    background-color: #ffffff;
+    color: #ff0000; /* Red text color */
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Main content styles */
+main {
+    flex: 1;
+    display: flex;
+    /* justify-content: c */
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100vw;
+}
+
+main ul{
+    width: 100%;
+}
+li{
+    height: 60px;
+    color: black;
+}
+.message {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #1a1a3e
+}
+
+.add-button2 {
+    background-color: #00d0c6; /* Teal/green color */
+    color: #ffffff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #00b8ae;
+}
+
+/* Greeting in the header */
+.header-content span {
+    font-size: 0.9rem;
+    color: #ffffff;
+    margin-left: 1rem;
+}
+
+a.attendance-profile-link{
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex: 0.8; */
+    align-items: center;
+    color: #9cc9d5;
+    font-weight: bolder;
+    height: 100%;
+    width: 100%;
+    padding-left: 20px;
+}
+a.attendance-profile-link > :not(:first-child){
+    margin-left: 50px;
+}
+
+@media screen and (max-width:600px) {
+    a.attendance-profile-link > :not(:first-child){
+        display: none;
+        padding-left: 20px;
+    }
+}
+/* Title for the authorized persons section */
+.authorized-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+/* List styles for authorized persons */
+.person-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: calc(100vh - 150px); /* Ensures space for the header and "+" button */
+    overflow-y: auto;
+}
+
+.person-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.person-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #ffffff; /* Placeholder white background */
+    margin-right: 1rem;
+}
+
+.person-name {
+    font-size: 1rem;
+}
+
+/* Add button with fixed position */
+.add-button {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    min-width: 50px;
+    height: 50px;
+    background-color: #00d0c6;
+    color: #ffffff;
+    border: none;
+    /* border-radius: 50%; */
+    /* font-size:  */
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #00b8ae;
+}
+  
+/* Form overlay styles */
+.form-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: #ffffff;
+    color: #1a1a3e;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 300px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+form label {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+form input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+form button, .button {
+    background-color: #00d0c6;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+form button:hover, .button:hover{
+    background-color: #00b8ae;
+}
+
+#closeForm {
+    background-color: #ff0000;
+    margin-top: 1rem;
+}
+
+#closeForm:hover {
+    background-color: #e60000;
+}
+
+.create-attendance-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80%;
+    height: 60px;
+    background-color: #1e3c4b;
+    /* border-radius: 10px; */
+    color: #00b8ae;
+    padding-left: 10px;
+    /* border: solid 2px #00b8ae; */
+}
+
+.create-attendance-div span{
+    font-weight: bold;
+}
+
+#createNew{
+    background-color: #00d0c6;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    min-width: 80px;
+}
+#createNew:hover{
+    background-color: #00d0c6;
+}
+
+.attendance-container, .registered-people-container{
+    margin-top: 30px;
+    min-width: 90%;
+    max-width: 90%;
+    background-color: #1e3c4b;
+    color: white;
+    max-height: 300px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow: 3px 4px 4px #1e3c4b99;
+    /* border: solid 2px #00b8ae; */
+}
+.attendance-container h3, .registered-people-container h3{
+    font-size: 1.3rem;
+    padding: 20px;
+}
+.attendance-container ol, .registered-people-container ul{
+    overflow-y: scroll;
+    width: 100%;
+    padding: 0px;
+    height: 90%;
+}
+
+li{
+    list-style: none;
+}
+
+.hidden{
+    display: none;
+}
+.registered-people-container ul > li{
+    margin-top: 5px;
+    width: 100%;
+    background-color: #1e4c4b;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
+}
+.attendance-container ol > li{
+    margin-top: 5px;
+    width: 100%;
+    background-color: #1e4f4b;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    padding-right: 10px;
+}
+
+.attendance-container ol > li{
+    list-style-type: disc;
+}
+.registered-people-container ul > li{
+    height: 60px;
+    justify-content: flex-start;
+}
+
+.registered-people-container li > *{
+    margin-left: 30px;
+}
+
+.registered-people-container img{
+    height: 100%;
+    width: 50px;
+    border-radius: 0;
+}
+
+.attendance-profile-link span{
+    /* display: inline-block; */
+}
+.form-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: #ffffff;
+    color: #1a1a3e;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 300px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+form input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+form button {
+    background-color: #00d0c6;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #00b8ae;
+}
+
+.closeForm {
+    background-color: #ff0000;
+    margin-top: 1rem;
+}
+
+.closeForm:hover {
+    background-color: #e60000;
+}
+
+#attendance-creation{
+    min-height:  150px;
+}
+#attendance-creation  >*{
+    margin-top: 5px;
+}
