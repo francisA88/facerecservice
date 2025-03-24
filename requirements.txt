@@ -1,3 +1,4 @@
 face_recognition==1.3.0
 django==4.2.4
 whitenoise
+daphne==4.1.2

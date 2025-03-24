@@ -22,7 +22,7 @@ APPEND_SLASH = False
 # Application definition
 
 INSTALLED_APPS = [
-    # "daphne",
+    "daphne",
     "mainapp",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -62,7 +62,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "facerecservice.wsgi.application"
-
+ASGI_APPLICATION = "myproject.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
