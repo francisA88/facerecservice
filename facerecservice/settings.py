@@ -9,18 +9,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = "IUDHIUEHIWUED"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*.onrender.com"]
+ALLOWED_HOSTS = ["*.onrender.com", "localhost", "127.0.0.1"]
 
 APPEND_SLASH = False
 
 # Application definition
 
 INSTALLED_APPS = [
+    # "daphne",
     "mainapp",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -32,6 +34,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -114,12 +117,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # settings.py
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
+print(STATIC_ROOT)
 STATIC_URL = 'static/'  # URL to access static files
 
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",  # Path to your 'static' directory
-#     BASE_DIR / "mainapp" / "static"
-# ]
+STATICFILES_DIRS = [
+    # BASE_DIR / "staticfiles",  # Path to your 'static' directory
+    BASE_DIR / "mainapp" / "static"
+]
 
 # STATIC_ROOT = ''
 
